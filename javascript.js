@@ -1,10 +1,10 @@
-// variables glabales
+// VARIABLES GLO
 
 const formularioUsuario = document.getElementById("formularioUsuario")
 const listaActividadesUsuario = document.getElementById("listaActividades")
 let arrayActividades = []
 
-// funciones
+// FUNCIONES
 
 const CrearItem = (actividad) => {
     let item = {
@@ -50,6 +50,7 @@ const PintarDB = () => {
 
 
 const EliminarDB = (actividad) => {
+
     let indexArray
     arrayActividades.forEach((elemento, index) => {
 
@@ -79,6 +80,21 @@ const EliminarDB = (actividad) => {
 
 formularioUsuario.addEventListener("submit", (e) => {
 
+    Toastify({
+  text: "Actividad agregada",
+  duration: 3000,
+//   destination: "https://github.com/apvarun/toastify-js",
+//   newWindow: true,
+  close: true,
+  gravity: "bottom", // `top` or `bottom`
+  position: "right", // `left`, `center` or `right`
+  stopOnFocus: true, // Prevents dismissing of toast on hover
+  style: {
+    background: "rgb(179, 54, 54)",
+  },
+  onClick: function(){} // Callback after click
+}).showToast();
+
     e.preventDefault();
     let actividadUsuario = document.getElementById("actividadUsuario").value
 
@@ -92,11 +108,24 @@ formularioUsuario.addEventListener("submit", (e) => {
 document.addEventListener("DOMContentLoaded", PintarDB)
 
 listaActividadesUsuario.addEventListener("click", (e) => {
-
-    console.log(e)
+    
     e.preventDefault();
 
     if (e.target.innerHTML === "realizado" || e.target.innerHTML === "descartar") {
+            Toastify({
+  text: "Actividad eliminada",
+  duration: 3000,
+//   destination: "https://github.com/apvarun/toastify-js",
+//   newWindow: true,
+  close: true,
+  gravity: "top", // `top` or `bottom`
+  position: "left", // `left`, `center` or `right`
+  stopOnFocus: true, // Prevents dismissing of toast on hover
+  style: {
+    background: "rgb(179, 54, 54)",
+  },
+  onClick: function(){} // Callback after click
+}).showToast();
         let texto = e.path[2].childNodes[3].innerHTML
         if (e.target.innerHTML === "descartar") {
             EliminarDB(texto);
